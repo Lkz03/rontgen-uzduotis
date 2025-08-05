@@ -28,7 +28,7 @@
 - `User` gali siųsti turimas lėšas.
 - `User` gali pasipildyti lėšas.
 
-![User](./src/Images/user.png)
+![User](./boilerplate/src/Images/user.png)
 
 ---
 
@@ -92,4 +92,4 @@ Aplikacijos 'Flow' diagramos buvo kurtos siekiant suprasti sistemą.
 Todėl, nėra baigtos, kadangi, išsiaiškinus, kaip veikia sistema, jų nebekūriau.
 Dėl to, kad sutaupyti laiką sudėtingesnėms užduotims.
 
-![Admin](./src/Images/admin.png)
+![Admin](./boilerplate/src/Images/admin.png)
