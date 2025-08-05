@@ -40,6 +40,10 @@ RUN a2enmod rewrite
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+# Debugging lines:
+RUN ls -l /usr/local/bin/
+RUN file /usr/local/bin/docker-entrypoint.sh
+
 # Atidengiame 80 portą
 EXPOSE 80
 
