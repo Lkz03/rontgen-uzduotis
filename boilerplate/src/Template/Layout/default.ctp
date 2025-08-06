@@ -189,6 +189,7 @@ $cakeDescription = 'Rontgen Tech';
                 <?= $this->Html->link(__('layout.logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'logout-btn']) ?>
             <?php else: ?>
                 <?= $this->Html->link(__('layout.login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'nav-link']) ?>
+                <?= $this->Html->link(__('layout.register'), ['controller' => 'Users', 'action' => 'register'], ['class' => 'nav-link']) ?>
             <?php endif; ?>
         </div>
     </div>
