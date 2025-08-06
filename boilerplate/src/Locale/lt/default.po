@@ -420,6 +420,12 @@ msgstr "Bonusinė užduotis (Investment Criteria)"
 msgid "home.tasks.task4.description"
 msgstr "Sukurkite galimybę investuotojui nurodyti kriterijus pagal kuriuos galėtų investuoti. Siūlomi kriterijai: kredito įvertinimas ir nemokumo tikimybė, paskolos suma ir terminas, palūkanų normos lūkesčiai, rizikos tolerancijos lygis, skolininko pajamų patvirtinimas, paskolos paskirtis ir užstatas, geografinės preferencijos, diversifikacija tarp kelių paskolų. Pagalvokite ir pasiūlykite papildomus kriterijus."
 
+msgid "Password must be at least 6 characters long"
+msgstr "Slaptažodis turi būti ne mažesnis nei 6 simboliai"
+
+msgid "Minimum 6 characters"
+msgstr "Mažiausiai 6 simboliai"
+
 msgid "home.login_button"
 msgstr "Prisijungti"
 

@@ -18,7 +18,9 @@ class UserFormHelper extends Helper
         $html = '';
 
         $html .= $this->Form->control('email');
-        $html .= $this->Form->control('password');
+        $html .= $this->Form->control('password', [
+            'help' => __('Minimum 6 characters')
+        ]);
 
         if (!empty($options['showRole'])) {
             $html .= $this->Form->control('role', [

@@ -66,7 +66,7 @@ class UsersTable extends Table
             ->scalar('password')
             ->maxLength('password', 255)
             ->notEmptyString('password')
-            ->minLength('password', 6);
+            ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
             ->scalar('role')
