@@ -91,7 +91,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/payments/build-request/:id', ['controller' => 'Payments', 'action' => 'buildRequest'])
         ->setPass(['id']);
 
-    $routes->connect('/payments/callback', ['controller' => 'Payments', 'action' => 'callback']);
+    $routes->connect('/client-payments/callback', ['controller' => 'ClientPayments', 'action' => 'callback']);
 
     $routes->fallbacks(DashedRoute::class);
 });
