@@ -288,6 +288,10 @@ msgstr "Vartotojų sąrašas"
 msgid "Add User"
 msgstr "Pridėti vartotoją"
 
+#: Template/Users/register.ctp:10
+msgid "Register User"
+msgstr "Registruoti vartotoją"
+
 #: Template/Users/edit.ctp:24
 #: Template/Users/view.ctp:10
 msgid "Edit User"
