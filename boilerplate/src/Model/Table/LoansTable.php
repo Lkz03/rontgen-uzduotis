@@ -4,13 +4,13 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class InvestmentLoansTable extends Table
+class LoansTable extends Table
 {
     public function initialize(array $config): void
     {
         parent::initialize($config);
 
-        $this->setTable('investment_loans');
+        $this->setTable('loans');
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
     }
@@ -20,7 +20,7 @@ class InvestmentLoansTable extends Table
         $validator
             ->notEmptyString('title')
             ->numeric('max_amount')
-            ->allowEmptyString('max_amount')
+            ->greaterThan('max_amount', 0)
             ->integer('max_interest')
             ->integer('min_interest')
             ->integer('max_duration_months')

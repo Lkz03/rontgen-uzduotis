@@ -2,15 +2,14 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Log\Log;
 
-class InvestmentLoansController extends AppController
+class LoansController extends AppController
 {
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadModel('InvestmentLoans');
-        $this->loadModel('ProjectTypes');  // for dropdown options
-        $this->loadModel('Locations');     // if you're saving location data separately
+        $this->loadModel('Loans');
         $this->loadComponent('Flash');     // for flash messages
     }
 
@@ -48,12 +47,11 @@ class InvestmentLoansController extends AppController
             return;
         }
 
-        $investmentLoan = $this->InvestmentLoans->newEntity();
+        $loan = $this->Loans->newEntity();
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
 
-            // Override duration_months fields if pickers are used
             if (!empty($data['min_duration_picker'])) {
                 $data['min_duration_months'] = $data['min_duration_picker'];
             }
@@ -61,17 +59,16 @@ class InvestmentLoansController extends AppController
                 $data['max_duration_months'] = $data['max_duration_picker'];
             }
 
-            // Patch entity without associations
-            $investmentLoan = $this->InvestmentLoans->patchEntity($investmentLoan, $data);
+            $loan = $this->Loans->patchEntity($loan, $data);
 
-            if ($this->InvestmentLoans->save($investmentLoan)) {
-                $this->Flash->success(__('The investment loan has been saved.'));
+            if ($this->Loans->save($loan)) {
+                $this->Flash->success(__('The loan has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The investment loan could not be saved. Please, try again.'));
+            $this->Flash->error(__('The loan could not be saved. Please, try again.'));
         }
-
-        $this->set(compact('investmentLoan'));
+        
+        $this->set(compact('loan'));
     }
 
     /**
@@ -81,13 +78,38 @@ class InvestmentLoansController extends AppController
      */
     public function index()
     {
-        $this->loadModel('InvestmentLoans');
+        if (!$this->requireAdmin()) {
+            return;
+        }
 
-        // Fetch all investment loans (you can add pagination or filtering later)
-        $investmentLoans = $this->InvestmentLoans->find('all');
-
-        // Pass data to the view
-        $this->set(compact('investmentLoans'));
+        $loans = $this->Loans->find('all');
+        Log::debug('Loans found: ' . count($loans->toArray()));
+        
+        $this->set(compact('loans'));
     }
 
+    /**
+     * Delete method
+     *
+     * @param string|null $id Investment Loan id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        if (!$this->requireAdmin()) {
+            return;
+        }
+
+        $this->request->allowMethod(['post', 'delete']);
+        $loan = $this->Loans->get($id);
+        
+        if ($this->Loans->delete($loan)) {
+            $this->Flash->success(__('The loan has been deleted.'));
+        } else {
+            $this->Flash->error(__('The loan could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 }

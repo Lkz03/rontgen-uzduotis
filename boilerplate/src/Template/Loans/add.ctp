@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\InvestmentLoan $investmentLoan
+ * @var \App\Model\Entity\Loan $loan
  */
 
 use Cake\Core\Configure;
@@ -19,17 +19,17 @@ $maxDuration = $config['duration']['max'];
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Wallets'), ['controller' => 'Wallets', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Investment Loans'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Loans'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 
 <div class="investments form large-9 medium-8 columns content">
-    <?= $this->Form->create($investmentLoan) ?>
+    <?= $this->Form->create($loan) ?>
 
     <?= $this->Form->control('title', [
         'type' => 'text',
         'label' => __('Investment loan title'),
-        'value' => $investmentLoan->title ?? '',
+        'value' => $loan->title ?? '',
         'style' => 'width: 100%; margin-bottom: 1em;',
     ]) ?>
 
@@ -37,7 +37,7 @@ $maxDuration = $config['duration']['max'];
         'type' => 'number',
         'step' => '0.01',
         'label' => __('Max amount'),
-        'value' => $investmentLoan->max_amount ?? '',
+        'value' => $loan->max_amount ?? '',
         'style' => 'width: 100%; margin-bottom: 1em;',
     ]) ?>
 
@@ -52,7 +52,7 @@ $maxDuration = $config['duration']['max'];
                 'step' => 1,
                 'label' => __('Min Interest'),
                 'id' => 'min-interest-input',
-                'value' => $investmentLoan->min_interest ?? $minInterest,
+                'value' => $loan->min_interest ?? $minInterest,
                 'style' => 'width:80px;',
                 'data-min' => $minInterest,
                 'data-max' => $maxInterest,
@@ -64,7 +64,7 @@ $maxDuration = $config['duration']['max'];
                 min="<?= $minInterest ?>"
                 max="<?= $maxInterest ?>"
                 step="1"
-                value="<?= $investmentLoan->min_interest ?? $minInterest ?>"
+                value="<?= $loan->min_interest ?? $minInterest ?>"
                 style="flex-grow:1;"
             />
 
@@ -75,7 +75,7 @@ $maxDuration = $config['duration']['max'];
                 'step' => 1,
                 'label' => __('Max Interest'),
                 'id' => 'max-interest-input',
-                'value' => $investmentLoan->max_interest ?? $maxInterest,
+                'value' => $loan->max_interest ?? $maxInterest,
                 'style' => 'width:80px;',
                 'data-min' => $minInterest,
                 'data-max' => $maxInterest,
@@ -87,7 +87,7 @@ $maxDuration = $config['duration']['max'];
                 min="<?= $minInterest ?>"
                 max="<?= $maxInterest ?>"
                 step="1"
-                value="<?= $investmentLoan->max_interest ?? $maxInterest ?>"
+                value="<?= $loan->max_interest ?? $maxInterest ?>"
                 style="flex-grow:1;"
             />
 
@@ -105,7 +105,7 @@ $maxDuration = $config['duration']['max'];
                 'step' => 1,
                 'label' => __('Min Duration'),
                 'id' => 'min-duration-input',
-                'value' => $investmentLoan->min_duration_months ?? $minDuration,
+                'value' => $loan->min_duration_months ?? $minDuration,
                 'style' => 'width:80px;',
                 'data-min' => $minDuration,
                 'data-max' => $maxDuration,
@@ -117,7 +117,7 @@ $maxDuration = $config['duration']['max'];
                 min="<?= $minDuration ?>"
                 max="<?= $maxDuration ?>"
                 step="1"
-                value="<?= $investmentLoan->min_duration_months ?? $minDuration ?>"
+                value="<?= $loan->min_duration_months ?? $minDuration ?>"
                 style="flex-grow:1;"
             />
 
@@ -128,7 +128,7 @@ $maxDuration = $config['duration']['max'];
                 'step' => 1,
                 'label' => __('Max Duration'),
                 'id' => 'max-duration-input',
-                'value' => $investmentLoan->max_duration_months ?? $maxDuration,
+                'value' => $loan->max_duration_months ?? $maxDuration,
                 'style' => 'width:80px;',
                 'data-min' => $minDuration,
                 'data-max' => $maxDuration,
@@ -140,7 +140,7 @@ $maxDuration = $config['duration']['max'];
                 min="<?= $minDuration ?>"
                 max="<?= $maxDuration ?>"
                 step="1"
-                value="<?= $investmentLoan->max_duration_months ?? $maxDuration ?>"
+                value="<?= $loan->max_duration_months ?? $maxDuration ?>"
                 style="flex-grow:1;"
             />
 

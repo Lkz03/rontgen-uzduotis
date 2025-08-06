@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\InvestmentLoan[]|\Cake\Collection\CollectionInterface $investmentLoans
+ * @var \App\Model\Entity\Loan[]|\Cake\Collection\CollectionInterface $loans
  */
 ?>
 
@@ -10,24 +10,24 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Wallets'), ['controller' => 'Wallets', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Investment Loan'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Loan'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 
-<div class="investments index large-9 medium-8 columns content">
-    <h3><?= __('Investment Projects') ?></h3>
+<div class="loans index large-9 medium-8 columns content">
+    <h3><?= __('Loans') ?></h3>
 
-    <div class="investment-list">
-        <?php foreach ($investmentLoans as $loan): ?>
-            <div class="investment-item">
-                <div class="investment-header">
+    <div class="loan-list">
+        <?php foreach ($loans as $loan): ?>
+            <div class="loan-item">
+                <div class="loan-header">
                     <strong><?= h($loan->title) ?></strong>
                 </div>
 
-                <div class="investment-progress">
+                <div class="loan-progress">
                     <?php
-                    $progress = $loan->current_amount && $loan->max_amount
-                        ? min(100, round(($loan->current_amount / $loan->max_amount) * 100))
+                    $progress = 1 && $loan->max_amount
+                        ? min(100, round((0 / $loan->max_amount) * 100))
                         : 0;
                     ?>
                     <div class="progress-bar">
@@ -35,36 +35,47 @@
                             <?= $progress ?>%
                         </div>
                     </div>
-                    <div class="investment-amount">
+                    <div class="loan-amount">
                         <?= number_format($loan->max_amount, 2) ?>
                         <span class="arrow">&#9660;</span>
                     </div>
                 </div>
+            </div>
+
+            <div class="loan-item-actions">
+                <?= $this->Form->postLink(
+                    __('Delete'),
+                    ['action' => 'delete', $loan->id],
+                    ['confirm' => __('Are you sure you want to delete # {0}?', $loan->id), 'class' => 'button danger']
+                ) ?>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
 
 <style>
-    .investment-list {
+    .loan-list {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
 
-    .investment-item {
+    .loan-item {
         border: 1px solid #ccc;
         padding: 1em;
         border-radius: 5px;
         background: #f9f9f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .investment-header {
+    .loan-header {
         margin-bottom: 0.5em;
         font-size: 1.1em;
     }
 
-    .investment-progress {
+    .loan-progress {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -89,7 +100,7 @@
         transition: width 0.3s ease-in-out;
     }
 
-    .investment-amount {
+    .loan-amount {
         display: flex;
         align-items: center;
         gap: 5px;

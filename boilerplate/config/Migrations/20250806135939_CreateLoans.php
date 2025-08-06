@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateInvestmentLoans extends AbstractMigration
+class CreateLoans extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,7 +12,7 @@ class CreateInvestmentLoans extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('investment_loans');
+        $table = $this->table('loans');
         $table->addColumn('title', 'string', [
             'default' => null,
             'limit' => 255,
