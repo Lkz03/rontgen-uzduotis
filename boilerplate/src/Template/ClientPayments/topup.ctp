@@ -341,7 +341,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="amount"><?= __('topup.form.custom_amount_label') ?></label>
+                    <label class="form-label" for="amount-input"><?= __('topup.form.custom_amount_label') ?></label>
                     <?= $this->Form->control('amount', [
                         'type' => 'number',
                         'class' => 'form-input',
