@@ -59,13 +59,14 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->allowEmptyString('email')
+            ->notEmptyString('email')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
-            ->allowEmptyString('password');
+            ->notEmptyString('password')
+            ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
             ->scalar('role')
