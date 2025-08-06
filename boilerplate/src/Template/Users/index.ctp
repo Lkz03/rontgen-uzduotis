@@ -10,6 +10,8 @@
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Wallets'), ['controller' => 'Wallets', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Wallet'), ['controller' => 'Wallets', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Investment Loans'), ['controller' => 'InvestmentLoans', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Investment'), ['controller' => 'InvestmentLoans', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">
