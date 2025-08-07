@@ -163,7 +163,7 @@
                                                 $ratio = 0;
                                                 if ($loan->max_duration_months != $loan->min_duration_months) {
                                                     $ratio = ($request->duration - $loan->min_duration_months) / ($loan->max_duration_months - $loan->min_duration_months);
-                                                    $ratio = max(0, min(1, $ratio)); // Clamp between 0 and 1
+                                                    $ratio = max(0, min(1, $ratio));
                                                 }
                                                 $effectiveInterest = $loan->min_interest + ($loan->max_interest - $loan->min_interest) * $ratio;
                                             ?>
