@@ -133,6 +133,10 @@ msgstr ""
 msgid "New Wallet"
 msgstr ""
 
+#: Template/Wallets/index.ctp:13
+msgid "New Investment"
+msgstr "Nauja investicija"
+
 #: Template/Transactions/add.ctp:18
 msgid "Add Transaction"
 msgstr ""

@@ -185,6 +185,7 @@ $cakeDescription = 'Rontgen Tech';
                     <?= $this->Html->link('Admin Panel', ['controller' => 'Users', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 <?php else: ?>
                     <?= $this->Html->link('Dashboard', ['controller' => 'Client', 'action' => 'dashboard'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Loans', ['controller' => 'LoanApplications', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 <?php endif; ?>
                 <?= $this->Html->link(__('layout.logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'logout-btn']) ?>
             <?php else: ?>

@@ -93,6 +93,12 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/payments/callback', ['controller' => 'Payments', 'action' => 'callback']);
 
+    $routes->connect(
+        '/loan-applications/request-loan/:requestId/:loanId',
+        ['controller' => 'LoanApplications', 'action' => 'requestLoan'],
+        ['pass' => ['requestId', 'loanId'], 'requestId' => '\d+', 'loanId' => '\d+']
+    );
+
     $routes->fallbacks(DashedRoute::class);
 });
 
