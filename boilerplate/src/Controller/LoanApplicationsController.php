@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Service\LoanService;
 use Cake\Log\Log;
 
 class LoanApplicationsController extends AppController
@@ -61,7 +62,7 @@ class LoanApplicationsController extends AppController
 
         foreach ($loanRequests as $request) {
             $loans = $this->Loans->find('matching', ['loanRequest' => $request])->toArray();
-            
+
             $filteredLoans = array_filter($loans, function($loan) use ($request) {
                 Log::debug("Loan ID {$loan->id} remaining_amount: " . $loan->remaining_amount);
                 return $loan->remaining_amount >= $request->amount;
@@ -93,4 +94,19 @@ class LoanApplicationsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function requestLoan($requestId, $loanId)
+    {
+        $userId = $this->Auth->user('id');
+
+        try {
+            LoanService::disburseLoan($loanId, $requestId, $userId);
+            $this->Flash->success(__('Paskolos lėšos sėkmingai pervestos.'));
+        } catch (\Exception $e) {
+            $this->Flash->error(__('Klaida: ' . $e->getMessage()));
+        }
+
+        return $this->redirect(['controller' => 'Client', 'action' => 'dashboard']);
+    }
+
 }

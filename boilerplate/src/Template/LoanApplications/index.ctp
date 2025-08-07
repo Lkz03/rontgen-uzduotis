@@ -189,5 +189,14 @@
             <p class="no-requests">Jūs dar neturite pateiktų paskolos prašymų.</p>
         <?php endif; ?>
     </div>
+
+    <script>
+        function requestLoan(requestId, loanId) {
+            if (confirm("Ar tikrai norite pateikti paskolos prašymą?")) {
+                const url = `/loan-applications/request-loan/${requestId}/${loanId}`;
+                window.location.href = url;
+            }
+        }
+    </script>
 </body>
 </html>

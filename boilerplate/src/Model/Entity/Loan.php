@@ -13,6 +13,7 @@ class Loan extends Entity
         'min_interest' => true,
         'max_duration_months' => true,
         'min_duration_months' => true,
+        'wallet_id' => true,
         'created' => true,
         'modified' => true
     ];

@@ -16,11 +16,18 @@ class LoansTable extends Table
         $this->setTable('loans');
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Wallets', [
+            'foreignKey' => 'wallet_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     public function validationDefault(Validator $validator): Validator
     {
         $validator
+            ->integer('wallet_id')
+            ->notEmptyString('wallet_id', 'Wallet is required')
             ->notEmptyString('title')
             ->numeric('max_amount')
             ->greaterThan('max_amount', 0)

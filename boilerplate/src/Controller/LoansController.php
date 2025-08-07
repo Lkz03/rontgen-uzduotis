@@ -59,6 +59,19 @@ class LoansController extends AppController
                 $data['max_duration_months'] = $data['max_duration_picker'];
             }
 
+            $adminId = $this->Auth->user('id');
+
+            $this->loadModel('Wallets');
+            $wallet = $this->Wallets->find()
+                ->where(['user_id' => $adminId])
+                ->first();
+
+            if (!$wallet) {
+                $this->Flash->error(__('Admin wallet not found.'));
+                return $this->redirect(['action' => 'index']);
+            }
+
+            $data['wallet_id'] = $wallet->id;
             $loan = $this->Loans->patchEntity($loan, $data);
             $loan->used_amount = 0;
 

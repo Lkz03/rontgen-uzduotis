@@ -26,8 +26,8 @@
 
                 <div class="loan-progress">
                     <?php
-                    $progress = 1 && $loan->max_amount
-                        ? min(100, round((0 / $loan->max_amount) * 100))
+                    $progress = $loan->max_amount > 0
+                        ? min(100, round(($loan->used_amount / $loan->max_amount) * 100))
                         : 0;
                     ?>
                     <div class="progress-bar">
