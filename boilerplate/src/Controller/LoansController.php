@@ -10,7 +10,7 @@ class LoansController extends AppController
     {
         parent::initialize();
         $this->loadModel('Loans');
-        $this->loadComponent('Flash');     // for flash messages
+        $this->loadComponent('Flash');
     }
 
     /**
@@ -60,6 +60,7 @@ class LoansController extends AppController
             }
 
             $loan = $this->Loans->patchEntity($loan, $data);
+            $loan->used_amount = 0;
 
             if ($this->Loans->save($loan)) {
                 $this->Flash->success(__('The loan has been saved.'));
@@ -83,7 +84,6 @@ class LoansController extends AppController
         }
 
         $loans = $this->Loans->find('all');
-        Log::debug('Loans found: ' . count($loans->toArray()));
         
         $this->set(compact('loans'));
     }
